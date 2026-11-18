@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — which pre-token protocol is worth farming next</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div>
+      <p class="kicker">Token launch radar &middot; pre-token protocols, ranked by implied value</p>
+      <h1>Token Radar</h1>
+      <p class="lede">Which protocol that records no token yet is worth farming next — and what to do about it. Every rank comes from the snapshot's own figures, with the working shown.</p>
+    </div>
+    <dl class="meta" id="meta"></dl>
+  </div>
+</header>
+
+<main>
+  <section class="stats" id="stats" aria-label="Board summary"></section>
+
+  <section class="panel" aria-label="How the ranking works">
+    <h2>How a rank is earned</h2>
+    <p class="method" id="method"></p>
+    <div class="sandbox" id="sandbox">
+      <h3>Model sandbox — move a dial, watch the board move</h3>
+      <p class="hint">The sandbox recomputes every implied value in your browser from the same rows. It changes nothing on disk; the board file keeps the published model.</p>
+      <div class="dials" id="dials"></div>
+      <p class="sandbox-note" id="sandbox-note"></p>
+    </div>
+  </section>
+
+  <section class="panel controls" aria-label="Filter the board">
+    <h2>Find a protocol</h2>
+    <div class="controls-grid">
+      <label>Search <input id="q" type="search" placeholder="Name or slug…" autocomplete="off"></label>
+      <label>Category <select id="cat"><option value="">All categories</option></select></label>
+      <label>Chain <select id="chain"><option value="">All chains</option></select></label>
+      <label>Sort <select id="sort">
+        <option value="implied">Implied value, high first</option>
+        <option value="tvl">TVL, high first</option>
+        <option value="growth">7-day change, high first</option>
+        <option value="age">Newest first</option>
+        <option value="name">Name, A to Z</option>
+      </select></label>
+      <label class="check"><input id="watch" type="checkbox"> Watchlist only</label>
+    </div>
+    <p class="count" id="count"></p>
+  </section>
+
+  <section class="layout">
+    <div class="board-wrap">
+      <table class="board" id="board">
+        <thead><tr>
+          <th>#</th><th>Protocol</th><th>Category</th><th>Chains</th>
+          <th class="num">TVL</th><th class="num">7d</th><th class="num">Implied value</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p class="more" id="more"></p>
+    </div>
+    <aside class="detail" id="detail" aria-label="Protocol detail"></aside>
+  </section>
+
+  <section class="panel" aria-label="Live tokens">
+    <h2>Already trading — not a pre-token farm</h2>
+    <p>These protocols already record a token, so the board does not rank them. They are here so a reader can tell a launch that already happened from one that has not — and so the board's implied values are never confused with a market price.</p>
+    <table class="board live" id="live">
+      <thead><tr><th>Protocol</th><th>Category</th><th class="num">TVL</th><th class="num">Market cap</th><th class="num">7d</th></tr></thead>
+      <tbody id="live-rows"></tbody>
+    </table>
+  </section>
+
+  <section class="panel" aria-label="Risks">
+    <h2>Before you farm anything</h2>
+    <ul class="risks">
+      <li><strong>Implied value is a claim, not a price.</strong> It says what a launch would be worth if the protocol's record stayed as it is. It does not predict whether or when a token is issued, or what it would trade at.</li>
+      <li><strong>No token recorded is not proof there is none.</strong> The snapshot is DefiLlama's record on one day; a protocol may have a token the record misses, or issue one tomorrow.</li>
+      <li><strong>Never pay to claim.</strong> Real airdrops are claimed from the protocol's own page, for gas only. Anyone asking for a fee, a seed phrase or a wallet connection to "unlock" a claim is running a scam.</li>
+      <li><strong>Farm with money you can lose.</strong> A position can fall, a bridge can fail, a contract can be exploited. The farm plans size positions small on purpose.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>Token Radar &middot; built from a sealed snapshot of the protocol universe. Data as of <span id="asof"></span>. Implied values are this radar's own model, never a market quote.</p>
+</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
